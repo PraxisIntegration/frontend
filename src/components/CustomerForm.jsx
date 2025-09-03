@@ -145,7 +145,7 @@ const CustomerForm = ({ queryParams, theme = 'light' }) => {
 
         <div className="form-row">
           <div className="form-group">
-            <label htmlFor="dob">Date of Birth * (MM/DD/YYYY)</label>
+            <label htmlFor="dob">Date of Birth *</label>
             <input
               type="date"
               id="dob"
