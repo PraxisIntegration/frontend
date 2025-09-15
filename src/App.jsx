@@ -1,13 +1,13 @@
 import { useState, useEffect } from 'react'
-import CustomerForm from './components/CustomerForm'
+import InitDepostiForm from './components/InitDepostiForm'
+import InitWithdrawal from './components/InitWithdrawal'
 import './App.css'
 
 function App() {
-  const [queryParams, setQueryParams] = useState({
-    currencyFrom: '',
-    currencyTo: '',
-    id: '',
-    amount: ''
+  const [query_params, setQueryParams] = useState({
+    session_id: '',
+    intent: '',
+    return_url: ''
   })
   const [theme, setTheme] = useState('light')
 
@@ -15,20 +15,29 @@ function App() {
     // Extract query parameters from URL
     const urlParams = new URLSearchParams(window.location.search)
     
-    const themeParam = urlParams.get('theme') || 'light'
-    setTheme(themeParam === 'dark' ? 'dark' : 'light')
-    
+    const theme_param = urlParams.get('theme') || 'light'
+    setTheme(theme_param === 'dark' ? 'dark' : 'light')
+
     setQueryParams({
-      currencyFrom: urlParams.get('currencyFrom') || '',
-      currencyTo: urlParams.get('currencyTo') || '',
-      id: urlParams.get('id') || '',
-      amount: urlParams.get('amount') || ''
+      session_id: urlParams.get('session_id') || '',
+      intent: urlParams.get('intent') || '',
+      return_url: urlParams.get('return_url') || ''
     })
+
+    console.log({urlParams})
   }, [])
+
+  const render_component = () => {
+    if (query_params.intent === 'withdrawal') {
+      return <InitWithdrawal query_params={query_params} theme={theme} />
+    } else {
+      return <InitDepostiForm query_params={query_params} theme={theme} />
+    }
+  }
 
   return (
     <div className={`app ${theme}-theme`}>
-      <CustomerForm queryParams={queryParams} theme={theme} />
+      {render_component()}
     </div>
   )
 }

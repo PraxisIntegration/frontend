@@ -1,42 +1,57 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 
-import { submitCustomerForm } from '../server'
 import { countries } from '../constants/countries'
 import { initialFormData } from '../constants/form'
 import { themes } from '../constants/themes'
-import { validationRules, formatDateForSubmission } from '../utils'
+import { phoneCodes } from '../constants/phoneCodes'
+import { initDeposit } from '../server'
+import { formatDateForSubmission, validationRules } from '../utils'
+import RedirectIframe from './RedirectIframe'
 
 import './CustomerForm.css'
 
-const CustomerForm = ({ queryParams, theme = 'light' }) => {
-  console.log(queryParams);
+const CustomerForm = ({ query_params, theme = 'light' }) => {
+  console.log(query_params);
   
-  const [formData, setFormData] = useState(initialFormData)
+  const [form_data, setFormData] = useState(initialFormData)
+  const [phone_code, setPhoneCode] = useState('+1')
 
   const [errors, setErrors] = useState({})
-  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [is_submitting, setIsSubmitting] = useState(false)
+  const [redirect_url, setRedirectUrl] = useState(null)
+
+  useEffect(() => {
+    if (form_data.country && phoneCodes[form_data.country]) {
+      setPhoneCode(phoneCodes[form_data.country])
+    }
+  }, [form_data.country])
 
 
-  const validateForm = () => {
-    const newErrors = {}
+  const validate_form = () => {
+    const new_errors = {}
 
     Object.keys(validationRules).forEach(field => {
-      const value = formData[field]
-      const fieldRules = validationRules[field]
+      const value = form_data[field]
+      const field_rules = validationRules[field]
       
-      for (const rule of fieldRules) {
+      for (const rule of field_rules) {
         if (rule.test(value)) {
-          newErrors[field] = rule.message
+          new_errors[field] = rule.message
           break
         }
       }
     })
 
-    setErrors(newErrors)
-    return Object.keys(newErrors).length === 0
+    const state_required_countries = ['US', 'CA', 'AU']
+    if (state_required_countries.includes(form_data.country) && !form_data.state) {
+      new_errors.state = 'State/Province is required for US, CA and AU'
+    }
+
+    setErrors(new_errors)
+    return Object.keys(new_errors).length === 0
   }
 
-  const handleInputChange = (e) => {
+  const handle_input_change = (e) => {
     const { name, value } = e.target
     setFormData(prev => ({
       ...prev,
@@ -52,24 +67,34 @@ const CustomerForm = ({ queryParams, theme = 'light' }) => {
   }
 
 
-  const handleSubmit = async (e) => {
+  const handle_submit = async (e) => {
     e.preventDefault()
-    if (!validateForm()) return;
+    if (!validate_form()) return;
 
     setIsSubmitting(true)
 
     try {
-      const submissionData = {
-        ...formData,
-        dob: formatDateForSubmission(formData.dob),
-        phone: parseInt(formData.phone, 10)
+      const full_phone_number = phone_code + form_data.phone
+      
+      const submission_data = {
+        ...form_data,
+        dob: formatDateForSubmission(form_data.dob),
+        phone: parseInt(full_phone_number.replace('+', ''), 10)
       }
 
-      const result = await submitCustomerForm(submissionData)
+      const result = await initDeposit({
+        customer: submission_data, 
+        session_id: query_params.session_id,
+        return_url: query_params.return_url
+      })
       console.log('Form submitted successfully:', result)
-      alert('Form submitted successfully!')
       
-      setFormData(initialFormData)
+      if (result.redirectUrl) {
+        setRedirectUrl(result.redirectUrl)
+      } else {
+        alert('Form submitted successfully!')
+        setFormData(initialFormData)
+      }
     } catch (error) {
       console.error('Error submitting form:', error)
       alert('Error submitting form. Please try again.')
@@ -78,25 +103,29 @@ const CustomerForm = ({ queryParams, theme = 'light' }) => {
     }
   }
 
-  const currentTheme = themes[theme]
+  const current_theme = themes[theme]
+  
+  if (redirect_url) {
+    return <RedirectIframe redirect_url={redirect_url} theme={theme} />
+  }
   
   return (
     <div 
       className={`form-container ${theme}-theme`}
       style={{
-        backgroundColor: currentTheme.formBackground,
-        color: currentTheme.textColor
+        backgroundColor: current_theme.formBackground,
+        color: current_theme.textColor
       }}
     >
-      <form onSubmit={handleSubmit} className="customer-form">  
+      <form onSubmit={handle_submit} className="customer-form">  
         <div className="form-row">
           <div className="form-group">
             <label htmlFor="country">Country *</label>
             <select
               id="country"
               name="country"
-              value={formData.country}
-              onChange={handleInputChange}
+              value={form_data.country}
+              onChange={handle_input_change}
               className={errors.country ? 'error' : ''}
               required
             >
@@ -118,8 +147,8 @@ const CustomerForm = ({ queryParams, theme = 'light' }) => {
               type="text"
               id="first_name"
               name="first_name"
-              value={formData.first_name}
-              onChange={handleInputChange}
+              value={form_data.first_name}
+              onChange={handle_input_change}
               maxLength="25"
               className={errors.first_name ? 'error' : ''}
               required
@@ -133,8 +162,8 @@ const CustomerForm = ({ queryParams, theme = 'light' }) => {
               type="text"
               id="last_name"
               name="last_name"
-              value={formData.last_name}
-              onChange={handleInputChange}
+              value={form_data.last_name}
+              onChange={handle_input_change}
               maxLength="25"
               className={errors.last_name ? 'error' : ''}
               required
@@ -150,8 +179,8 @@ const CustomerForm = ({ queryParams, theme = 'light' }) => {
               type="date"
               id="dob"
               name="dob"
-              value={formData.dob}
-              onChange={handleInputChange}
+              value={form_data.dob}
+              onChange={handle_input_change}
               min="1900-01-01"
               max={new Date().toISOString().split('T')[0]}
               className={errors.dob ? 'error' : ''}
@@ -166,8 +195,8 @@ const CustomerForm = ({ queryParams, theme = 'light' }) => {
               type="email"
               id="email"
               name="email"
-              value={formData.email}
-              onChange={handleInputChange}
+              value={form_data.email}
+              onChange={handle_input_change}
               maxLength="50"
               className={errors.email ? 'error' : ''}
               required
@@ -179,16 +208,20 @@ const CustomerForm = ({ queryParams, theme = 'light' }) => {
         <div className="form-row">
           <div className="form-group">
             <label htmlFor="phone">Phone *</label>
-            <input
-              type="tel"
-              id="phone"
-              name="phone"
-              value={formData.phone}
-              onChange={handleInputChange}
-              placeholder="e.g., 44201112222"
-              className={errors.phone ? 'error' : ''}
-              required
-            />
+            <div className={`phone-input-container ${errors.phone ? 'error' : ''}`}>
+              <div className="phone-code-display">
+                {phone_code}
+              </div>
+              <input
+                type="tel"
+                id="phone"
+                name="phone"
+                value={form_data.phone}
+                onChange={handle_input_change}
+                placeholder="e.g., 201112222"
+                required
+              />
+            </div>
             {errors.phone && <span className="error-message">{errors.phone}</span>}
           </div>
 
@@ -198,8 +231,8 @@ const CustomerForm = ({ queryParams, theme = 'light' }) => {
               type="text"
               id="zip"
               name="zip"
-              value={formData.zip}
-              onChange={handleInputChange}
+              value={form_data.zip}
+              onChange={handle_input_change}
               maxLength="12"
               className={errors.zip ? 'error' : ''}
               required
@@ -210,17 +243,20 @@ const CustomerForm = ({ queryParams, theme = 'light' }) => {
 
         <div className="form-row">
           <div className="form-group">
-            <label htmlFor="state">State/Province *</label>
+            <label htmlFor="state">
+              State/Province 
+              {['US', 'CA', 'AU'].includes(form_data.country) && ' *'}
+            </label>
             <input
               type="text"
               id="state"
               name="state"
-              value={formData.state}
-              onChange={handleInputChange}
+              value={form_data.state}
+              onChange={handle_input_change}
               maxLength="3"
               placeholder="e.g., CA, NY, JS"
               className={errors.state ? 'error' : ''}
-              required
+              required={['US', 'CA', 'AU'].includes(form_data.country)}
             />
             {errors.state && <span className="error-message">{errors.state}</span>}
           </div>
@@ -231,8 +267,8 @@ const CustomerForm = ({ queryParams, theme = 'light' }) => {
               type="text"
               id="city"
               name="city"
-              value={formData.city}
-              onChange={handleInputChange}
+              value={form_data.city}
+              onChange={handle_input_change}
               maxLength="50"
               className={errors.city ? 'error' : ''}
               required
@@ -248,8 +284,8 @@ const CustomerForm = ({ queryParams, theme = 'light' }) => {
               type="text"
               id="address"
               name="address"
-              value={formData.address}
-              onChange={handleInputChange}
+              value={form_data.address}
+              onChange={handle_input_change}
               maxLength="100"
               className={errors.address ? 'error' : ''}
               required
@@ -261,9 +297,9 @@ const CustomerForm = ({ queryParams, theme = 'light' }) => {
         <button 
           type="submit" 
           className="submit-button"
-          disabled={isSubmitting}
+          disabled={is_submitting}
         >
-          {isSubmitting ? 'Submitting...' : 'Submit'}
+          {is_submitting ? 'Submitting...' : 'Submit'}
         </button>
       </form>
     </div>
