@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { themes } from '../constants/themes'
 import { initWithdrawal } from '../server'
 import RedirectIframe from './RedirectIframe'
@@ -7,10 +7,16 @@ const InitWithdrawal = ({ query_params, theme = 'light' }) => {
   const [redirect_url, setRedirectUrl] = useState(null)
   const [is_loading, setIsLoading] = useState(true)
   const [error, setError] = useState(null)
+  const hasInitiated = useRef(false)
 
   useEffect(() => {
+    if (hasInitiated.current) {
+      return
+    }
+
     const init_withdrawal_process = async () => {
       try {
+        hasInitiated.current = true
         setIsLoading(true)
         const result = await initWithdrawal({ 
           session_id: query_params.session_id,
@@ -26,6 +32,7 @@ const InitWithdrawal = ({ query_params, theme = 'light' }) => {
       } catch (error) {
         console.error('Error initiating withdrawal:', error)
         setError('Error initiating withdrawal. Please try again.')
+        hasInitiated.current = false
       } finally {
         setIsLoading(false)
       }
