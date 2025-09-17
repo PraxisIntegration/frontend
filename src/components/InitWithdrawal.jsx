@@ -7,6 +7,8 @@ const InitWithdrawal = ({ query_params, theme = 'light' }) => {
   const [redirect_url, setRedirectUrl] = useState(null)
   const [is_loading, setIsLoading] = useState(true)
   const [error, setError] = useState(null)
+  const [countdown, setCountdown] = useState(10)
+  const [is_redirecting, setIsRedirecting] = useState(false)
   const hasInitiated = useRef(false)
 
   useEffect(() => {
@@ -31,8 +33,10 @@ const InitWithdrawal = ({ query_params, theme = 'light' }) => {
         }
       } catch (error) {
         console.error('Error initiating withdrawal:', error)
-        setError('Error initiating withdrawal. Please try again.')
+        setError(`Error initiating withdrawal. ${error.message}. Please contact support.`)
         hasInitiated.current = false
+        setIsRedirecting(true)
+        setCountdown(10)
       } finally {
         setIsLoading(false)
       }
@@ -40,6 +44,19 @@ const InitWithdrawal = ({ query_params, theme = 'light' }) => {
 
     init_withdrawal_process()
   }, [query_params.session_id, query_params.return_url])
+
+  useEffect(() => {
+    if (is_redirecting && countdown > 0) {
+      const timer = setTimeout(() => {
+        setCountdown(countdown - 1)
+      }, 1000)
+      return () => clearTimeout(timer)
+    } else if (is_redirecting && countdown === 0) {
+      if (query_params.return_url) {
+        window.location.href = query_params.return_url
+      }
+    }
+  }, [is_redirecting, countdown, query_params.return_url])
 
   if (redirect_url) {
     return <RedirectIframe redirect_url={redirect_url} theme={theme} />
@@ -69,6 +86,11 @@ const InitWithdrawal = ({ query_params, theme = 'light' }) => {
       {error && (
         <div style={{ textAlign: 'center', color: '#ff6b6b' }}>
           <p>{error}</p>
+          {is_redirecting && (
+            <div style={{ marginTop: '20px', color: current_theme.textColor }}>
+              <p>Redirecting in {countdown} seconds...</p>
+            </div>
+          )}
         </div>
       )}
     </div>

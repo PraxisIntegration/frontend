@@ -30,7 +30,8 @@ export const initWithdrawal = async (params) => {
   );
 
   if (!response.ok) {
-    throw new Error("Submission failed");
+    const body = await response.json();
+    throw new Error(body.message);
   }
 
   return await response.json();
