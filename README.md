@@ -111,7 +111,7 @@ http://localhost:5173?theme=dark&intent=deposit
 
 The application requires the following environment variable:
 
-- `VITE_API_URL`: Base URL for the Praxis API
+- `VITE_API_URL`: Base URL for the Praxis integration backend
 
 <img width="525" height="734" alt="image" src="https://github.com/user-attachments/assets/25ac9c3a-9b93-46f5-b1b8-1262b1a10348" />
 <img width="491" height="742" alt="image" src="https://github.com/user-attachments/assets/b602c7da-285c-415f-a83f-56f601949ae3" />
