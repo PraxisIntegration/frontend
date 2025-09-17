@@ -29,21 +29,6 @@ A React-based application for Praxis integration that supports both deposit and 
 
 4. Open your browser and navigate to `http://localhost:5173`
 
-## Testing the Iframe Example
-
-To test the iframe integration with a complete example:
-
-1. Start the development server:
-
-   ```bash
-   npm run dev
-   ```
-
-2. Open `iframe-example.html` in your browser:
-   ```
-   http://localhost:5173/iframe-example.html
-   ```
-
 ## Iframe Integration
 
 To embed this application in an iframe, use:
