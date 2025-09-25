@@ -7,7 +7,8 @@ function App() {
   const [query_params, setQueryParams] = useState({
     session_id: '',
     intent: '',
-    return_url: ''
+    return_url: '',
+    client_id: ''
   })
   const [theme, setTheme] = useState('light')
 
@@ -21,10 +22,9 @@ function App() {
     setQueryParams({
       session_id: urlParams.get('session_id') || '',
       intent: urlParams.get('intent') || '',
-      return_url: urlParams.get('return_url') || ''
+      return_url: urlParams.get('return_url') || '',
+      client_id: urlParams.get('client_id') || ''
     })
-
-    console.log({urlParams})
   }, [])
 
   const render_component = () => {

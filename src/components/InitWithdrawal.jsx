@@ -3,7 +3,8 @@ import { themes } from '../constants/themes'
 import { initWithdrawal } from '../server'
 import RedirectIframe from './RedirectIframe'
 
-const InitWithdrawal = ({ query_params, theme = 'light' }) => {
+const 
+InitWithdrawal = ({ query_params, theme = 'light' }) => {
   const [redirect_url, setRedirectUrl] = useState(null)
   const [is_loading, setIsLoading] = useState(true)
   const [error, setError] = useState(null)
@@ -22,7 +23,8 @@ const InitWithdrawal = ({ query_params, theme = 'light' }) => {
         setIsLoading(true)
         const result = await initWithdrawal({ 
           session_id: query_params.session_id,
-          return_url: query_params.return_url
+          return_url: query_params.return_url,
+          client_id: query_params.client_id
         })
         console.log('Withdrawal initiated successfully:', result)
         
@@ -43,7 +45,7 @@ const InitWithdrawal = ({ query_params, theme = 'light' }) => {
     }
 
     init_withdrawal_process()
-  }, [query_params.session_id, query_params.return_url])
+  }, [query_params.session_id, query_params.return_url, query_params.client_id])
 
   useEffect(() => {
     if (is_redirecting && countdown > 0) {

@@ -85,7 +85,8 @@ const CustomerForm = ({ query_params, theme = 'light' }) => {
       const result = await initDeposit({
         customer: submission_data, 
         session_id: query_params.session_id,
-        return_url: query_params.return_url
+        return_url: query_params.return_url,
+        client_id: query_params.client_id
       })
       console.log('Form submitted successfully:', result)
       
