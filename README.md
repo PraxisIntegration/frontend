@@ -53,6 +53,7 @@ The application supports the following query parameters for configuration:
 | `intent`     | string | Operation type (`deposit` or `withdrawal`) | `intent=withdrawal`                     |
 | `session_id` | string | Session identifier                         | `session_id=12345`                      |
 | `return_url` | string | URL to redirect after completion           | `return_url=https://example.com/return` |
+| `locale`     | string | UI/Backend locale (e.g. `ta` or `ta-IN`)   | `locale=ru-RU`                          |
 
 ### Example URLs
 
@@ -71,7 +72,7 @@ http://localhost:5173?theme=dark&intent=withdrawal&session_id=67890&return_url=h
 **Minimal setup:**
 
 ```
-http://localhost:5173?theme=dark&intent=deposit
+http://localhost:5173?theme=dark&intent=deposit&locale=en-GB
 ```
 
 ## Application Flow
@@ -112,6 +113,12 @@ http://localhost:5173?theme=dark&intent=deposit
 The application requires the following environment variable:
 
 - `VITE_API_URL`: Base URL for the Praxis integration backend
+
+### Localization
+
+- Add `locale` query param to control language and region. You can pass either language only (e.g. `ta`) or language-region (e.g. `ta-IN`).
+- The frontend normalizes language-only values to a supported full locale per mapping (e.g. `ta` -> `ta-IN`, `en` -> `en-GB`).
+- The normalized `locale` is also sent to the backend as part of the request payload for deposit/withdrawal.
 
 <img width="525" height="734" alt="image" src="https://github.com/user-attachments/assets/25ac9c3a-9b93-46f5-b1b8-1262b1a10348" />
 <img width="491" height="742" alt="image" src="https://github.com/user-attachments/assets/b602c7da-285c-415f-a83f-56f601949ae3" />

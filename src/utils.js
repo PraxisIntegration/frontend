@@ -35,72 +35,71 @@ export const formatDateForSubmission = (date) => {
 };
 
 export const validationRules = {
-  country: [{ test: (value) => !value, message: "Country is required" }],
+  country: [{ test: (value) => !value, message: 'validation.country.required' }],
   first_name: [
-    { test: (value) => !value, message: "First name is required" },
+    { test: (value) => !value, message: 'validation.first_name.required' },
     {
       test: (value) => value.length > 25,
-      message: "First name must be 25 characters or less",
+      message: 'validation.first_name.max',
     },
   ],
   last_name: [
-    { test: (value) => !value, message: "Last name is required" },
+    { test: (value) => !value, message: 'validation.last_name.required' },
     {
       test: (value) => value.length > 25,
-      message: "Last name must be 25 characters or less",
+      message: 'validation.last_name.max',
     },
   ],
   dob: [
-    { test: (value) => !value, message: "Date of birth is required" },
+    { test: (value) => !value, message: 'validation.dob.required' },
     {
       test: (value) => value && !validateDate(value),
-      message: "Please enter a valid date between 1900 and today",
+      message: 'validation.dob.range',
     },
   ],
   email: [
-    { test: (value) => !value, message: "Email is required" },
+    { test: (value) => !value, message: 'validation.email.required' },
     {
       test: (value) => value.length > 50,
-      message: "Email must be 50 characters or less",
+      message: 'validation.email.max',
     },
     {
       test: (value) => value && !validateEmail(value),
-      message: "Please enter a valid email address",
+      message: 'validation.email.format',
     },
   ],
   phone: [
-    { test: (value) => !value, message: "Phone number is required" },
+    { test: (value) => !value, message: 'validation.phone.required' },
     {
       test: (value) => value && !validatePhone(value),
-      message:
-        "Please enter a valid phone number (numbers only, with country code)",
+      message: 'validation.phone.format',
     },
   ],
   zip: [
-    { test: (value) => !value, message: "Postal code is required" },
+    { test: (value) => !value, message: 'validation.zip.required' },
     {
       test: (value) => value && !validateZip(value),
-      message: "Postal code must be alphanumeric and 12 characters or less",
+      message: 'validation.zip.format',
     },
   ],
   state: [
     {
       test: (value) => value && !validateState(value),
-      message: "State must be 2-3 characters (ISO format)",
+      message: 'validation.state.format',
     },
   ],
   city: [
-    { test: (value) => !value, message: "City is required" },
+    { test: (value) => !value, message: 'validation.city.required' },
     {
       test: (value) => value.length > 50,
-      message: "City must be 50 characters or less",
+      message: 'validation.city.max',
     },
   ],
   address: [
-    { test: (value) => !value, message: "Address is required" },
+    { test: (value) => !value, message: 'validation.address.required' },
     {
       test: (value) => value.length > 100,
-      message: "Address must be 100 characters or less",
+      message: 'validation.address.max',
     },
   ],
-};
+}

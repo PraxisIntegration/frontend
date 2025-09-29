@@ -81,8 +81,6 @@
         <div class="iframe-header">
             <h2>Customer Information Form</h2>
         </div>
-        
-        <!-- Example iframe usage with query parameters -->
         <iframe 
             src="http://localhost:5173/?currencyFrom=USD&currencyTo=EUR&id=12345&amount=1000&theme=light"
             title="Customer Form"
@@ -130,8 +128,6 @@
                 theme: theme
             });
             iframe.src = baseUrl + '?' + params.toString();
-            
-            // Update the example info
             const paramText = document.querySelector('.example-info p:nth-child(3)');
             paramText.innerHTML = `Query parameters passed: <code>currencyFrom=USD&currencyTo=EUR&id=12345&amount=1000&theme=${theme}</code>`;
         }

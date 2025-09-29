@@ -1,10 +1,12 @@
 import { useState, useEffect, useRef } from 'react'
+import { useTranslation } from 'react-i18next'
 import { themes } from '../constants/themes'
 import { initWithdrawal } from '../server'
 import RedirectIframe from './RedirectIframe'
 
 const 
 InitWithdrawal = ({ query_params, theme = 'light' }) => {
+  const { t } = useTranslation()
   const [redirect_url, setRedirectUrl] = useState(null)
   const [is_loading, setIsLoading] = useState(true)
   const [error, setError] = useState(null)
@@ -24,18 +26,19 @@ InitWithdrawal = ({ query_params, theme = 'light' }) => {
         const result = await initWithdrawal({ 
           session_id: query_params.session_id,
           return_url: query_params.return_url,
-          client_id: query_params.client_id
+          client_id: query_params.client_id,
+          locale: query_params.locale
         })
         console.log('Withdrawal initiated successfully:', result)
         
         if (result.redirectUrl) {
           setRedirectUrl(result.redirectUrl)
         } else {
-          setError('No redirect URL received')
+          setError(t('withdrawal.noRedirect'))
         }
       } catch (error) {
         console.error('Error initiating withdrawal:', error)
-        setError(`Error initiating withdrawal. ${error.message}. Please contact support.`)
+        setError(t('withdrawal.errorWithMessage', { message: error.message }))
         hasInitiated.current = false
         setIsRedirecting(true)
         setCountdown(10)
@@ -45,7 +48,7 @@ InitWithdrawal = ({ query_params, theme = 'light' }) => {
     }
 
     init_withdrawal_process()
-  }, [query_params.session_id, query_params.return_url, query_params.client_id])
+  }, [query_params.session_id, query_params.return_url, query_params.client_id, query_params.locale])
 
   useEffect(() => {
     if (is_redirecting && countdown > 0) {
@@ -82,7 +85,7 @@ InitWithdrawal = ({ query_params, theme = 'light' }) => {
     >
       {is_loading && (
         <div style={{ textAlign: 'center' }}>
-          <p>Initializing withdrawal...</p>
+          <p>{t('withdrawal.initializing')}</p>
         </div>
       )}
       {error && (
@@ -90,7 +93,7 @@ InitWithdrawal = ({ query_params, theme = 'light' }) => {
           <p>{error}</p>
           {is_redirecting && (
             <div style={{ marginTop: '20px', color: current_theme.textColor }}>
-              <p>Redirecting in {countdown} seconds...</p>
+              <p>{t('common.redirectingInSeconds', { count: countdown })}</p>
             </div>
           )}
         </div>

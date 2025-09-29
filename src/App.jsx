@@ -1,4 +1,6 @@
 import { useState, useEffect } from 'react'
+import i18n from './i18n'
+import { normalizeLocale, isRTL } from './locale'
 import InitDepostiForm from './components/InitDepostiForm'
 import InitWithdrawal from './components/InitWithdrawal'
 import './App.css'
@@ -8,22 +10,29 @@ function App() {
     session_id: '',
     intent: '',
     return_url: '',
-    client_id: ''
+    client_id: '',
+    locale: 'en-GB'
   })
   const [theme, setTheme] = useState('light')
 
   useEffect(() => {
-    // Extract query parameters from URL
     const urlParams = new URLSearchParams(window.location.search)
     
     const theme_param = urlParams.get('theme') || 'light'
     setTheme(theme_param === 'dark' ? 'dark' : 'light')
 
+    const rawLocale = urlParams.get('locale') || ''
+    const normalized = normalizeLocale(rawLocale, 'en-GB')
+    i18n.changeLanguage(normalized)
+    document.documentElement.setAttribute('dir', isRTL(normalized) ? 'rtl' : 'ltr')
+
+
     setQueryParams({
       session_id: urlParams.get('session_id') || '',
       intent: urlParams.get('intent') || '',
       return_url: urlParams.get('return_url') || '',
-      client_id: urlParams.get('client_id') || ''
+      client_id: urlParams.get('client_id') || '',
+      locale: normalized
     })
   }, [])
 
