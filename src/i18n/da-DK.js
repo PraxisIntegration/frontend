@@ -39,7 +39,7 @@ export default {
     'email.max': 'E-mail må højst være 50 tegn',
     'email.format': 'Angiv en gyldig e-mailadresse',
     'phone.required': 'Telefonnummer er påkrævet',
-    'phone.format': 'Angiv et gyldigt telefonnummer (kun tal, med landekode)',
+    'phone.format': 'Angiv et gyldigt telefonnummer (kun tal, uden landekode)',
     'zip.required': 'Postnummer er påkrævet',
     'zip.format': 'Postnummer skal være alfanumerisk og højst 12 tegn',
     'state.format': 'Stat/Provins skal have 2–3 bogstaver (ISO)',

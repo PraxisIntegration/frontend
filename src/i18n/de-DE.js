@@ -39,7 +39,7 @@ export default {
     'email.max': 'E-Mail darf höchstens 50 Zeichen haben',
     'email.format': 'Bitte eine gültige E-Mail-Adresse eingeben',
     'phone.required': 'Telefonnummer ist erforderlich',
-    'phone.format': 'Bitte eine gültige Telefonnummer eingeben (nur Zahlen, mit Ländervorwahl)',
+    'phone.format': 'Bitte eine gültige Telefonnummer eingeben (nur Zahlen, ohne Ländervorwahl)',
     'zip.required': 'Postleitzahl ist erforderlich',
     'zip.format': 'Postleitzahl muss alphanumerisch sein und höchstens 12 Zeichen haben',
     'state.format': 'Bundesland/Provinz muss 2–3 Buchstaben (ISO) haben',

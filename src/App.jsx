@@ -3,8 +3,6 @@ import i18n from './i18n'
 import { normalizeLocale, isRTL } from './locale'
 import InitDepostiForm from './components/InitDepostiForm'
 import InitWithdrawal from './components/InitWithdrawal'
-import './App.css'
-
 function App() {
   const [query_params, setQueryParams] = useState({
     session_id: '',
@@ -44,8 +42,13 @@ function App() {
     }
   }
 
+  const base_classes = 'min-h-screen w-full font-sans transition-colors duration-200'
+  const appClasses = theme === 'dark'
+    ? `${base_classes} bg-[#16161f] text-white`
+    : `${base_classes} bg-[#f3f6f9] text-slate-900`
+
   return (
-    <div className={`app ${theme}-theme`}>
+    <div className={appClasses}>
       {render_component()}
     </div>
   )

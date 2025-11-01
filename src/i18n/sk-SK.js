@@ -39,7 +39,7 @@ export default {
     'email.max': 'E-mail môže mať najviac 50 znakov',
     'email.format': 'Zadajte platnú e-mailovú adresu',
     'phone.required': 'Telefónne číslo je povinné',
-    'phone.format': 'Zadajte platné telefónne číslo (iba číslice, s predvoľbou)',
+    'phone.format': 'Zadajte platné telefónne číslo (iba číslice, bez predvoľby)',
     'zip.required': 'PSČ je povinné',
     'zip.format': 'PSČ musí byť alfanumerické a najviac 12 znakov',
     'state.format': 'Štát/Provincia musí mať 2–3 písmená (ISO formát)',

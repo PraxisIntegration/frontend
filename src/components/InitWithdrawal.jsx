@@ -1,11 +1,9 @@
 import { useState, useEffect, useRef } from 'react'
 import { useTranslation } from 'react-i18next'
-import { themes } from '../constants/themes'
 import { initWithdrawal } from '../server'
 import RedirectIframe from './RedirectIframe'
 
-const 
-InitWithdrawal = ({ query_params, theme = 'light' }) => {
+const InitWithdrawal = ({ query_params, theme = 'light' }) => {
   const { t } = useTranslation()
   const [redirect_url, setRedirectUrl] = useState(null)
   const [is_loading, setIsLoading] = useState(true)
@@ -23,14 +21,13 @@ InitWithdrawal = ({ query_params, theme = 'light' }) => {
       try {
         hasInitiated.current = true
         setIsLoading(true)
-        const result = await initWithdrawal({ 
+        const result = await initWithdrawal({
           session_id: query_params.session_id,
           return_url: query_params.return_url,
           client_id: query_params.client_id,
           locale: query_params.locale
         })
-        console.log('Withdrawal initiated successfully:', result)
-        
+
         if (result.redirectUrl) {
           setRedirectUrl(result.redirectUrl)
         } else {
@@ -48,12 +45,12 @@ InitWithdrawal = ({ query_params, theme = 'light' }) => {
     }
 
     init_withdrawal_process()
-  }, [query_params.session_id, query_params.return_url, query_params.client_id, query_params.locale])
+  }, [query_params.session_id, query_params.return_url, query_params.client_id, query_params.locale, t])
 
   useEffect(() => {
     if (is_redirecting && countdown > 0) {
       const timer = setTimeout(() => {
-        setCountdown(countdown - 1)
+        setCountdown(prev => prev - 1)
       }, 1000)
       return () => clearTimeout(timer)
     } else if (is_redirecting && countdown === 0) {
@@ -67,34 +64,33 @@ InitWithdrawal = ({ query_params, theme = 'light' }) => {
     return <RedirectIframe redirect_url={redirect_url} theme={theme} />
   }
 
-  const current_theme = themes[theme]
+  const is_dark = theme === 'dark'
+  const cx = (...classes) => classes.filter(Boolean).join(' ')
+
+  const container_classes = cx(
+    'flex min-h-screen w-full flex-col items-center justify-center gap-5 px-5 text-center',
+    is_dark ? 'bg-[#16161f] text-slate-100' : 'bg-[#f3f6f9] text-slate-900'
+  )
+
+  const status_text_classes = cx(
+    'text-sm font-medium md:text-base',
+    is_dark ? 'text-slate-200' : 'text-slate-700'
+  )
 
   return (
-    <div 
-      className={`withdrawal-container ${theme}-theme`}
-      style={{
-        backgroundColor: current_theme.formBackground,
-        color: current_theme.textColor,
-        width: '100%',
-        height: '100vh',
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        flexDirection: 'column'
-      }}
-    >
+    <div className={container_classes}>
       {is_loading && (
-        <div style={{ textAlign: 'center' }}>
-          <p>{t('withdrawal.initializing')}</p>
+        <div>
+          <p className="text-base font-semibold md:text-lg">{t('withdrawal.initializing')}</p>
         </div>
       )}
       {error && (
-        <div style={{ textAlign: 'center', color: '#ff6b6b' }}>
-          <p>{error}</p>
+        <div className="space-y-4">
+          <p className="text-base font-semibold text-red-400 md:text-lg">{error}</p>
           {is_redirecting && (
-            <div style={{ marginTop: '20px', color: current_theme.textColor }}>
-              <p>{t('common.redirectingInSeconds', { count: countdown })}</p>
-            </div>
+            <p className={status_text_classes}>
+              {t('common.redirectingInSeconds', { count: countdown })}
+            </p>
           )}
         </div>
       )}

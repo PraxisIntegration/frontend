@@ -39,7 +39,7 @@ export default {
     'email.max': 'Email tối đa 50 ký tự',
     'email.format': 'Nhập địa chỉ email hợp lệ',
     'phone.required': 'Số điện thoại là bắt buộc',
-    'phone.format': 'Nhập số điện thoại hợp lệ (chỉ số, có mã quốc gia)',
+    'phone.format': 'Nhập số điện thoại hợp lệ (chỉ số, không có mã quốc gia)',
     'zip.required': 'Mã bưu chính là bắt buộc',
     'zip.format': 'Mã bưu chính phải là chữ và số, tối đa 12 ký tự',
     'state.format': 'Bang/Tỉnh phải có 2–3 chữ cái (định dạng ISO)',

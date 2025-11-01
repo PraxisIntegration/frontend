@@ -39,7 +39,7 @@ export default {
     'email.max': 'E-mail może mieć maksymalnie 50 znaków',
     'email.format': 'Wprowadź prawidłowy adres e-mail',
     'phone.required': 'Numer telefonu jest wymagany',
-    'phone.format': 'Wprowadź prawidłowy numer telefonu (tylko cyfry, z kodem kraju)',
+    'phone.format': 'Wprowadź prawidłowy numer telefonu (tylko cyfry, bez kodu kraju)',
     'zip.required': 'Kod pocztowy jest wymagany',
     'zip.format': 'Kod pocztowy musi być alfanumeryczny i mieć maks. 12 znaków',
     'state.format': 'Stan/ Prowincja musi mieć 2–3 litery (format ISO)',

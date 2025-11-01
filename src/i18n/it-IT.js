@@ -39,7 +39,7 @@ export default {
     'email.max': 'L\'email deve avere al massimo 50 caratteri',
     'email.format': 'Inserisci un indirizzo email valido',
     'phone.required': 'Il numero di telefono è obbligatorio',
-    'phone.format': 'Inserisci un numero di telefono valido (solo cifre, con prefisso internazionale)',
+    'phone.format': 'Inserisci un numero di telefono valido (solo cifre, senza prefisso internazionale)',
     'zip.required': 'Il CAP è obbligatorio',
     'zip.format': 'Il CAP deve essere alfanumerico e massimo 12 caratteri',
     'state.format': 'Stato/Provincia deve avere 2–3 lettere (formato ISO)',

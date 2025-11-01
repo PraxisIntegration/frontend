@@ -39,7 +39,7 @@ export default {
     'email.max': 'E-post får ha högst 50 tecken',
     'email.format': 'Ange en giltig e-postadress',
     'phone.required': 'Telefonnummer krävs',
-    'phone.format': 'Ange ett giltigt telefonnummer (endast siffror, med landskod)',
+    'phone.format': 'Ange ett giltigt telefonnummer (endast siffror, utan landskod)',
     'zip.required': 'Postnummer krävs',
     'zip.format': 'Postnummer måste vara alfanumeriskt och högst 12 tecken',
     'state.format': 'Delstat/Provins måste ha 2–3 bokstäver (ISO)',

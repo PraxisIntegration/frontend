@@ -39,7 +39,7 @@ export default {
     'email.max': 'Az e-mail legfeljebb 50 karakter lehet',
     'email.format': 'Adjon meg érvényes e-mail címet',
     'phone.required': 'A telefonszám megadása kötelező',
-    'phone.format': 'Adjon meg érvényes telefonszámot (csak számok, országkóddal)',
+    'phone.format': 'Adjon meg érvényes telefonszámot (csak számok, országkód nélkül)',
     'zip.required': 'Az irányítószám megadása kötelező',
     'zip.format': 'Az irányítószám alfanumerikus, legfeljebb 12 karakter',
     'state.format': 'Az állam/provincia 2–3 betűs (ISO formátum)',

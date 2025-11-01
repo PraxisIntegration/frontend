@@ -39,7 +39,7 @@ export default {
     'email.max': 'E-post kan ha maks 50 teikn',
     'email.format': 'Oppgi ei gyldig e-postadresse',
     'phone.required': 'Telefonnummer er påkravd',
-    'phone.format': 'Oppgi eit gyldig telefonnummer (berre siffer, med landskode)',
+    'phone.format': 'Oppgi eit gyldig telefonnummer (berre siffer, utan landskode)',
     'zip.required': 'Postnummer er påkravd',
     'zip.format': 'Postnummer må vere alfanumerisk og maks 12 teikn',
     'state.format': 'Stat/Provins må ha 2–3 bokstavar (ISO)',

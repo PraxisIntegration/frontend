@@ -39,7 +39,7 @@ export default {
     'email.max': 'Hanggang 50 na karakter ang email',
     'email.format': 'Maglagay ng wastong email address',
     'phone.required': 'Kinakailangan ang numero ng telepono',
-    'phone.format': 'Maglagay ng wastong numero (mga numero lamang, may country code)',
+    'phone.format': 'Maglagay ng wastong numero (mga numero lamang, walang country code)',
     'zip.required': 'Kinakailangan ang postal code',
     'zip.format': 'Ang postal code ay alpanumeriko at hanggang 12 na karakter',
     'state.format': 'Ang Estado/Probinsya ay dapat 2–3 titik (ISO)',

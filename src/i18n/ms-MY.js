@@ -39,7 +39,7 @@ export default {
     'email.max': 'Emel maksimum 50 aksara',
     'email.format': 'Masukkan alamat emel yang sah',
     'phone.required': 'Nombor telefon diperlukan',
-    'phone.format': 'Masukkan nombor telefon yang sah (nombor sahaja, dengan kod negara)',
+    'phone.format': 'Masukkan nombor telefon yang sah (nombor sahaja, tanpa kod negara)',
     'zip.required': 'Poskod diperlukan',
     'zip.format': 'Poskod mesti alfanumerik dan maksimum 12 aksara',
     'state.format': 'Negeri/Provinsi mesti 2–3 huruf (format ISO)',

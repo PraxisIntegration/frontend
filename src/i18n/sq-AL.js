@@ -39,7 +39,7 @@ export default {
     'email.max': 'Email duhet të ketë maksimumi 50 karaktere',
     'email.format': 'Shkruani një adresë email të vlefshme',
     'phone.required': 'Numri i telefonit është i detyrueshëm',
-    'phone.format': 'Shkruani një numër telefoni të vlefshëm (vetëm shifra, me kodin e vendit)',
+    'phone.format': 'Shkruani një numër telefoni të vlefshëm (vetëm shifra, pa kodin e vendit)',
     'zip.required': 'Kodi postar është i detyrueshëm',
     'zip.format': 'Kodi postar duhet të jetë alfanumerik dhe maksimumi 12 karaktere',
     'state.format': 'Shtet/Provincë duhet të ketë 2–3 shkronja (format ISO)',

@@ -39,7 +39,7 @@ export default {
     'email.max': 'O email deve ter 50 caracteres ou menos',
     'email.format': 'Introduza um email válido',
     'phone.required': 'O número de telefone é obrigatório',
-    'phone.format': 'Introduza um número de telefone válido (apenas dígitos, com indicativo de país)',
+    'phone.format': 'Introduza um número de telefone válido (apenas dígitos, sem indicativo de país)',
     'zip.required': 'O código postal é obrigatório',
     'zip.format': 'O código postal deve ser alfanumérico e ter no máximo 12 caracteres',
     'state.format': 'O Estado/Província deve ter 2–3 letras (formato ISO)',

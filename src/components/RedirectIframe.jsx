@@ -1,30 +1,17 @@
-import { themes } from '../constants/themes'
 import { useTranslation } from 'react-i18next'
 
 const RedirectIframe = ({ redirect_url, theme = 'light' }) => {
   const { t } = useTranslation()
-  const current_theme = themes[theme]
-  
+
+  const container_classes = theme === 'dark'
+    ? 'flex min-h-screen w-full items-center justify-center bg-[#1f1f2a] text-white'
+    : 'flex min-h-screen w-full items-center justify-center bg-white text-slate-900'
+
   return (
-    <div 
-      className={`iframe-container ${theme}-theme`}
-      style={{
-        backgroundColor: current_theme.formBackground,
-        color: current_theme.textColor,
-        width: '100%',
-        height: '100vh',
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center'
-      }}
-    >
+    <div className={container_classes}>
       <iframe
         src={redirect_url}
-        style={{
-          width: '100%',
-          height: '100%',
-          border: 'none'
-        }}
+        className="h-full w-full border-0"
         title={t('common.paymentRedirect')}
       />
     </div>

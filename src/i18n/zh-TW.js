@@ -39,7 +39,7 @@ export default {
     'email.max': '電子郵件最多 50 個字元',
     'email.format': '請輸入有效的電子郵件地址',
     'phone.required': '電話號碼為必填',
-    'phone.format': '請輸入有效的電話號碼（僅數字，含國碼）',
+    'phone.format': '請輸入有效的電話號碼（僅數字，不含國碼）',
     'zip.required': '郵遞區號為必填',
     'zip.format': '郵遞區號必須為英數字且不超過 12 個字元',
     'state.format': '州/省需為 2–3 個字母（ISO 格式）',

@@ -39,7 +39,7 @@ export default {
     'email.max': 'Sähköposti saa olla enintään 50 merkkiä',
     'email.format': 'Anna kelvollinen sähköpostiosoite',
     'phone.required': 'Puhelinnumero on pakollinen',
-    'phone.format': 'Anna kelvollinen puhelinnumero (vain numerot, maatunnuksella)',
+    'phone.format': 'Anna kelvollinen puhelinnumero (vain numerot, ilman maatunnusta)',
     'zip.required': 'Postinumero on pakollinen',
     'zip.format': 'Postinumeron tulee olla aakkosnumeerinen ja enintään 12 merkkiä',
     'state.format': 'Osavaltio/Provinsi tulee olla 2–3 kirjainta (ISO)',

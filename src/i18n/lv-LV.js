@@ -39,7 +39,7 @@ export default {
     'email.max': 'E-pasts nedrīkst pārsniegt 50 rakstzīmes',
     'email.format': 'Ievadiet derīgu e-pasta adresi',
     'phone.required': 'Tālruņa numurs ir obligāts',
-    'phone.format': 'Ievadiet derīgu tālruņa numuru (tikai cipari, ar valsts kodu)',
+    'phone.format': 'Ievadiet derīgu tālruņa numuru (tikai cipari, bez valsts koda)',
     'zip.required': 'Pasta indekss ir obligāts',
     'zip.format': 'Pasta indeksam jābūt burtciparu un ne garākam par 12 rakstzīmēm',
     'state.format': 'Štatam/Provincei jābūt 2–3 burtiem (ISO formāts)',

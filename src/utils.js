@@ -11,9 +11,17 @@ export const validateDate = (date) => {
   return selectedDate <= currentDate && selectedDate >= minDate;
 };
 
+export const sanitizePhone = (phone) => (phone || '').replace(/[^\d]/g, '');
+
 export const validatePhone = (phone) => {
-  const phoneRegex = /^\d+$/;
-  return phoneRegex.test(phone) && phone.length >= 7;
+  const digits = sanitizePhone(phone);
+  if (digits.length < 6 || digits.length > 12) {
+    return false;
+  }
+  if (/^(\d)\1{5,}$/.test(digits)) {
+    return false;
+  }
+  return true;
 };
 
 export const validateZip = (zip) => {

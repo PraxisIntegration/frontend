@@ -39,7 +39,7 @@ export default {
     'email.max': 'E-mail mag maximaal 50 tekens bevatten',
     'email.format': 'Voer een geldig e-mailadres in',
     'phone.required': 'Telefoonnummer is verplicht',
-    'phone.format': 'Voer een geldig telefoonnummer in (alleen cijfers, met landcode)',
+    'phone.format': 'Voer een geldig telefoonnummer in (alleen cijfers, zonder landcode)',
     'zip.required': 'Postcode is verplicht',
     'zip.format': 'Postcode moet alfanumeriek zijn en maximaal 12 tekens',
     'state.format': 'Staat/Provincie moet 2–3 letters hebben (ISO-formaat)',

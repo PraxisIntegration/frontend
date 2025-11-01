@@ -39,7 +39,7 @@ export default {
     'email.max': 'El. paštas turi būti ne ilgesnis kaip 50 simbolių',
     'email.format': 'Įveskite galiojantį el. pašto adresą',
     'phone.required': 'Telefono numeris yra privalomas',
-    'phone.format': 'Įveskite galiojantį telefono numerį (tik skaičiai, su šalies kodu)',
+    'phone.format': 'Įveskite galiojantį telefono numerį (tik skaičiai, be šalies kodo)',
     'zip.required': 'Pašto kodas yra privalomas',
     'zip.format': 'Pašto kodas turi būti raidinis-skaitmeninis ir iki 12 simbolių',
     'state.format': 'Valstija/Provincija turi būti 2–3 raidės (ISO formatas)',

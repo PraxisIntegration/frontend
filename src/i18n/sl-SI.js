@@ -39,7 +39,7 @@ export default {
     'email.max': 'E-pošta je lahko dolga največ 50 znakov',
     'email.format': 'Vnesite veljaven e-poštni naslov',
     'phone.required': 'Telefonska številka je obvezna',
-    'phone.format': 'Vnesite veljavno telefonsko številko (samo številke, z klicno številko države)',
+    'phone.format': 'Vnesite veljavno telefonsko številko (samo številke, brez klicne številke države)',
     'zip.required': 'Poštna številka je obvezna',
     'zip.format': 'Poštna številka mora biti alfanumerična in dolga največ 12 znakov',
     'state.format': 'Zvezna država/Provinca mora imeti 2–3 črke (format ISO)',

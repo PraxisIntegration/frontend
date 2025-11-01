@@ -39,7 +39,7 @@ export default {
     'email.max': 'Email maksimal 50 karakter',
     'email.format': 'Masukkan alamat email yang valid',
     'phone.required': 'Nomor telepon wajib diisi',
-    'phone.format': 'Masukkan nomor telepon yang valid (hanya angka, dengan kode negara)',
+    'phone.format': 'Masukkan nomor telepon yang valid (hanya angka, tanpa kode negara)',
     'zip.required': 'Kode pos wajib diisi',
     'zip.format': 'Kode pos harus alfanumerik dan maksimal 12 karakter',
     'state.format': 'Negara Bagian/Provinsi harus 2–3 huruf (format ISO)',

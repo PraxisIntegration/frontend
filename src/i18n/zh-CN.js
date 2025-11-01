@@ -39,7 +39,7 @@ export default {
     'email.max': '邮箱最多 50 个字符',
     'email.format': '请输入有效的邮箱地址',
     'phone.required': '电话号码为必填项',
-    'phone.format': '请输入有效的电话号码（仅数字，含国家区号）',
+    'phone.format': '请输入有效的电话号码（仅数字，不含国家区号）',
     'zip.required': '邮编为必填项',
     'zip.format': '邮编必须是字母或数字，且不超过 12 个字符',
     'state.format': '州/省需为 2–3 个字母（ISO 格式）',

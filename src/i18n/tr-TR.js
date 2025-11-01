@@ -39,7 +39,7 @@ export default {
     'email.max': 'E-posta en fazla 50 karakter olabilir',
     'email.format': 'Geçerli bir e-posta adresi girin',
     'phone.required': 'Telefon numarası zorunludur',
-    'phone.format': 'Geçerli bir telefon numarası girin (yalnızca rakamlar, ülke kodu ile)',
+    'phone.format': 'Geçerli bir telefon numarası girin (yalnızca rakamlar, ülke kodu olmadan)',
     'zip.required': 'Posta kodu zorunludur',
     'zip.format': 'Posta kodu alfasayısal olmalı ve en fazla 12 karakter',
     'state.format': 'Eyalet/İl 2–3 harf olmalıdır (ISO formatı)',

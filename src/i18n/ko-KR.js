@@ -39,7 +39,7 @@ export default {
     'email.max': '이메일은 최대 50자까지 가능합니다',
     'email.format': '유효한 이메일 주소를 입력하세요',
     'phone.required': '전화번호는 필수입니다',
-    'phone.format': '유효한 전화번호를 입력하세요(숫자만, 국가 코드 포함)',
+    'phone.format': '유효한 전화번호를 입력하세요(숫자만, 국가 코드 없이)',
     'zip.required': '우편번호는 필수입니다',
     'zip.format': '우편번호는 영숫자이고 최대 12자여야 합니다',
     'state.format': '주/도는 2–3자(ISO 형식)여야 합니다',

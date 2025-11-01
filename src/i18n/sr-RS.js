@@ -39,7 +39,7 @@ export default {
     'email.max': 'Email može imati najviše 50 karaktera',
     'email.format': 'Unesite važeću email adresu',
     'phone.required': 'Broj telefona je obavezan',
-    'phone.format': 'Unesite važeći broj telefona (samo cifre, sa pozivnim brojem)',
+    'phone.format': 'Unesite važeći broj telefona (samo cifre, bez pozivnog broja)',
     'zip.required': 'Poštanski broj je obavezan',
     'zip.format': 'Poštanski broj mora biti alfanumerički i do 12 karaktera',
     'state.format': 'Država/Provincija mora imati 2–3 slova (ISO format)',

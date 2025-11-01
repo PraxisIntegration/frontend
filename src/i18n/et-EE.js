@@ -39,7 +39,7 @@ export default {
     'email.max': 'E-post võib olla kuni 50 märki',
     'email.format': 'Sisestage kehtiv e-posti aadress',
     'phone.required': 'Telefoninumber on kohustuslik',
-    'phone.format': 'Sisestage kehtiv telefoninumber (ainult numbrid, koos riigikoodiga)',
+    'phone.format': 'Sisestage kehtiv telefoninumber (ainult numbrid, ilma riigikoodita)',
     'zip.required': 'Postiindeks on kohustuslik',
     'zip.format': 'Postiindeks peab olema tähtnumbriline ja kuni 12 märki',
     'state.format': 'Osariik/Provints peab olema 2–3 tähte (ISO formaat)',
